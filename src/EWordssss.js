@@ -51,7 +51,10 @@ import { Container, Form } from 'semantic-ui-react'
 // const ewordAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3" ////
 ///////const ewordAddress = "0x047F65031c8aBf370FDBfEf667B0b1fd702F09Ef"
 //const ewordAddress = "0x58Fc0f0421203218EA9Cb55C743Dd2A82f6218C5"
-const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+
+// const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const ewordEngContract = "0x9EBD79915dA3aCa29139e61Fa46d5fE604576729"
+
 
 
 function EWordssss() {
