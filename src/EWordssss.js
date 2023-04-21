@@ -676,7 +676,7 @@ function EWordssss() {
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='engword_explained' type="text" />
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='engword_pronouciation' type="text" /> */}
 
-                <input onChange = { (e) => setEngWord(e.target.value)} id="engword" value = {engWord} placeholder='engword' type="text"/>
+                <input onChange = { (e) => setEngWord(e.target.value)} id="engword" value = {engWord} placeholder='engword'  type="text"/>
                 <input onChange = { (e) => setEngWordExplained(e.target.value)} id="engword_explaned" value = {engWordExplained} placeholder='engword_explained' type="text" />
                 <input onChange = { (e) => setEngWordPronounciation(e.target.value)} id="engword_pronounciation" value = {engWordPronounciation} placeholder='engword_pronouciation' type="text" />
 
@@ -716,6 +716,9 @@ function EWordssss() {
 
 
 
+<div className='engwtocheck'>
+      lkajsdlkfajsssssss
+
             <form >
                 {plW}
                 { sessionStorage.getItem('plw') }
@@ -724,7 +727,7 @@ function EWordssss() {
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='plword' type="text" /> */}
 
                 {/* <input onChange = { (e) => setEngWToCheck(e.target.value)} id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' type="text"/> */}
-                <input onChange = { handleEngWord } id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' type="text"/>
+                <input onChange = { handleEngWord } id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' style={{ width: "500px"}}type="text"/>
 
 
 
@@ -735,7 +738,7 @@ function EWordssss() {
 
 
             </form>
-
+</div>
 
  
         </dev>
