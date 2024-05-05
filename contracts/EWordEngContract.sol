@@ -70,15 +70,6 @@ contract EWordEngContract {
             return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
     }
 
-     function getAddedEngWordEngExplainedAndPronounciation(uint256 wordid) external view returns (string memory, string memory, string memory) {
-           // return ewords[wordid].engword;
-          //  return (ewords[wordid].engword, ewords[wordid].plword);
-              ////  uint256 wordid = ewords.length;
-
-            // return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
-            return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
-    }
-
     // function getPlWord(uint256 wordid) external view returns (string memory) {
     //     return  ewords[wordid].plword;
     // }
