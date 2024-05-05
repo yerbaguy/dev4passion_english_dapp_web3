@@ -20,16 +20,14 @@ contract EWordEngContract is ERC20{
         uint id;
         string engword;
         //string plword;
-        string engword_pronounciation;
-        //string engword_explained;
+        string engword_explained;
         // string engword_explained_wrongly1;
         // string engword_explained_wrongly2;
         // string engword_explained_wrongly3;
         // string engword_explained_wrongly4;
         // string engword_explained_wrongly5;
         // string engword_explained_wrongly6;
-        string engword_explained;
-        //string engword_pronounciation;
+        string engword_pronounciation;
 
       //  EWordWronglyExplained[][7] _ewords_wrongly_explained;
 
@@ -54,7 +52,11 @@ contract EWordEngContract is ERC20{
 
     constructor() ERC20("","") {
 
-       
+        EWord[] storage _ewords = ewords;
+        EWord memory eword = EWord(1, "kind", "kand","generous, helpful, and thinking about other people's feelings");
+        EWord memory eword1 = EWord(2, "hardly", "hd.li/","only just; almost not");
+        _ewords.push(eword);
+        _ewords.push(eword1);
 
         // EWordWronglyExplained[][7] storage _ewords_wrongly_explained = ewords_wrongly_explained;
         // EWordWronglyExplained memory eword_wrong = EWordWronglyExplained(0, "less than anything or anyone else; the smallest amount or number","special, or this and not any other");
@@ -70,8 +72,8 @@ contract EWordEngContract is ERC20{
 
     // function addEWord(string memory engword, string memory plword) external {
     function addEWord(string memory engword, 
-                      string memory engword_pronounciation,
-                      string memory engword_explained
+                      string memory engword_explained,
+                      string memory engword_pronounciation
                     //   //added
                     //   string memory engword_wrongly_explained
                     //   //
@@ -85,7 +87,7 @@ contract EWordEngContract is ERC20{
         // //
 
         // ewords.push(EWord(wordId, engword, plword));
-        ewords.push(EWord(wordId, engword, engword_pronounciation, engword_explained));
+        ewords.push(EWord(wordId, engword, engword_explained, engword_pronounciation));
 
         // //added
         // // ewords_wrongly_explained.push(EWordWronglyExplained(ewords_wrongly_explained, engword_wrongly_explained));
@@ -203,9 +205,7 @@ contract EWordEngContract is ERC20{
       function getEngWordEngExplainedAndPronounciation(uint256 wordid) external view returns (string memory, string memory, string memory) {
            // return ewords[wordid].engword;
           //  return (ewords[wordid].engword, ewords[wordid].plword);
-            // return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
-                        return (ewords[wordid].engword, ewords[wordid].engword_pronounciation, ewords[wordid].engword_explained);
-
+            return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
     }
 
      function getAddedEngWordEngExplainedAndPronounciation(uint256 wordid) external view returns (string memory, string memory, string memory) {
@@ -214,9 +214,7 @@ contract EWordEngContract is ERC20{
               ////  uint256 wordid = ewords.length;
 
             // return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
-            // return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
-                        return (ewords[wordid].engword, ewords[wordid].engword_pronounciation, ewords[wordid].engword_explained);
-
+            return (ewords[wordid].engword, ewords[wordid].engword_explained, ewords[wordid].engword_pronounciation);
     }
 
     // function getPlWord(uint256 wordid) external view returns (string memory) {

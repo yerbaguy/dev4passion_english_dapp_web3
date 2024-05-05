@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+
 import {ethers} from "ethers"
 
 import EWordEngContract from '../artifacts/contracts/EWordEngContract.sol/EWordEngContract.json'
@@ -11,230 +12,450 @@ import { Timeline } from 'react-twitter-widgets'
 
 // const ewordEngContract = "0x9EBD79915dA3aCa29139e61Fa46d5fE604576729"
 // const ewordEngContract = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
-
-
-// const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
 const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+
 
 function Learn() {
 
-  const[query, setQuery] = useState('')
-  const[wordid, setWordId] = useState(0)
+  const [engWord, setEngWord] = useState('')
+  const [engWordExplained, setEngWordExplained] = useState('')
+  const [engWordPronounciation, setEngWordPronounciation] = useState('')
 
-  // const [data, setData] = useState('');
-  const [data, setData] = useState([]);
-  const [data1, setData1] = useState([]);
-  // const [engword, setEngword] = useState([{
-  //   id: 1,
-  //   engword_explained: "kind"
-  // }]);
-  const [engword, setEngword] = useState([]);
+  const [plWord, setPlWord] = useState('')
+  // const [engW, setEngW] = useState('')
+  // const [plW, setplW] = useState('')
 
-  // const mixed_arrays = data1.concat(engword);
-  // mixed_arrays.sort();
-  // mixed_arrays.reverse();
+  // const [engW, setEngW] = useState([])
+  const [engW, setEngW] = useState('')
+  
+  // const [engWExplained, setEngWExplained] = useState('')
+  const [engWExplained, setEngWExplained] = useState([])
+  
+  const [plW, setplW] = useState([])
 
-  // const [correctEngword_explained, setCorrectEngword_explained] = useState([
+   
+   
+   const [engWToCheck, setEngWToCheck] = useState('')
+  // const [engWToCheck, setEngWToCheck] = useState([])
+  // const [data, setData] = useState('')
+  //const [data, setData] = useState(1)
+  const [data, setData] = useState([])
+
+  const [ewordsCount, setEWordsCount] = useState(0)
+
+  // const [listOfEngWords, setListOfEngWords] = useState([
   //   {
   //     id: 1,
-  //     engword_explained: "kind"
-  //   }
+  //     engword_explained: 'kind'
+  //   },
+
+  //   {
+  //     id: 2,
+  //     engword_explained: 'hardly'
+  //   },
+
+  //   {
+  //     id: 3,
+  //     engword_explained: 'least'
+  //   },
+
+  //   {
+  //     id: 4,
+  //     engword_explained: 'particular'
+  //   },
+
+
   // ]);
-  const [correctEngword_explained, setCorrectEngword_explained] = useState([]);
 
-  const[randomWord, setRandomWord] = useState([]);
-  // const mixed_arrays = data1.concat(correctEngword_explained);
+    const [listOfEngWords, setListOfEngWords] = useState([]);
+  // const [listOfEngWords, setListOfEngWords] = useState('');
+  //const [listOfEngWords, setListOfEngWords] = useState();
 
-  const mixed_arrays = [...data1, ...correctEngword_explained];
+  // const merged_arrays = listOfEngWords.concat(engWExplained);
+  const merged_arrays = [...engWExplained, ...listOfEngWords];
 
-
-  // mixed_arrays.sort();
-  // mixed_arrays.reverse();
-
-  // useEffect(()=>{
-
-  //   getEWords();
-  // },[])
-
-  useEffect(()=>{
-
-   // getEngWords();
-   //fetchEWords();
-    fetchEWords1();
-  //  mixed_arrays.sort();
-  //  mixed_arrays.reverse();
-  },[])
+  let ewordscount
+  let datacount = 1
 
 
+
+  useEffect(() => {
+    // setData(data)
+
+     // loadEWord();
+
+      fetchEWords();
+     getListOfEngWords(1);
+
+    getRandomInt();
+
+    // getEWord(0);
+
+    // const dataaccountls = localStorage.getItem("datacount");
+    const datacount = localStorage.getItem("datacount");
+       getEWord(datacount);
  
-  async function fetchEWords1() {
-    if (typeof window.ethereum !== 'undefined') {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        // const contract = new ethers.Contract(ewordAddress, Eword.abi, provider)
-        // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, provider)
-        const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, provider)
-        try {
-        //   const data = await contract.greet()
-        // const data = await contract.fetchEWords() //
-        // const data = await contract.getEWords1(1)
-        // const data = await contract.getEWords1(0)
+    // setEWordsCount(data);
+    
+    
 
-        
-        const data = await contract.getEWords1(0)
-        console.log(data);
-
-        console.log('datA01: ', data[0][1])
-        console.log('datA02: ', data[0][2])
-        console.log('datA03: ', data[0][3])
-        console.log('data11: ', data[1][1])
-        console.log('data12: ', data[1][2])
-
-        //setData(data);
-        // setData1(data.engword_explained);
-        //  setData1([...data, data[1]])
-        // setData1([...data, data[0]])
-        // setData1([...data, data])
+    // },[])
+    //  },[], [ewordsCount])
+    },[])
 
 
-        setData1([...data, data])
-        //setData1(data)
-        // console.log(data);
-        // console.log("fetchEWords1",data);
-        console.log("fetchEWords1",data[2][2]);
-        
-
-        const data_count = data.length;
-        localStorage.setItem("datacount", JSON.stringify(data_count))
-
-        // getRandomInt(data_count);
-         const get_rand_word = getRandomInt(data_count);
-        // getRandomInt();
-            console.log("get_rand_word", get_rand_word);
-
-            localStorage.setItem("getrandomword", JSON.stringify(get_rand_word))
-            console.log("getEWords1_get_rand_word", get_rand_word);
-               // localStorage.setItem("datacount", data)
-             ////  const getrandomword = localStorage.getItem("getrandomword");
-             ////  console.log("getrandomword", getrandomword);
-                getEWord(get_rand_word);
-              //// getEWord();
-
-
-          //  setRandomWord([...randomWord, get_rand_word]);
-          //  console.log(randomWord);
-
-           console.log("data_count", data_count);
-
-         ///// datacount = data_count;
-
-          // setData(data);
-         ///// setData(data_count);
-
-         // setGreetingValue(data)
-
-             
-              
-             
-            // console.log('data[0]: ', data[0])
-           /////  console.log('data[0]: ', data_count)
-            // setEWordsCount(data)
-           ///// setEWordsCount(data_count)
-           ///// console.log('ewordsCount: ', datacount)
+    async function requestAccount() {
+      // await window.ethereum.request({ method: "eth_requestAccounts" })
+     const windw_eth =  await window.ethereum.request({ method: "eth_requestAccounts" })
+     console.log("window_eth", windw_eth);
+    }
 
 
 
-           ////////////
-          //   const datta = datacount;
-          //   console.log("data_data", datacount)
-          //   getEWord(datacount);
-     
-          //  const min = Math.ceil(1);
-          //    // max = Math.floor(data.length);
-          //  const max = Math.floor(datta);
+
+
+    async function getListOfEngWords(fetchewords_data_count) {
+      //  const getAddedEngWord = async() => {
+
+          console.log("getAddedEngWord", fetchewords_data_count);
+
+        /////////
+        if (!typeof window.ethereum !== 'undefined') {
+           await requestAccount()
+           const provider = new ethers.providers.Web3Provider(window.ethereum)
+           const signer = provider.getSigner()
+           // const contract = new ethers.Contract(ewordAddress, Eword.abi, signer)
+           // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, signer)
+           const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, signer)
+
+           // const transaction = await contract.createEWord(eword.engword, eword.plword, "lkajsdlfkjasd")
+           // const transaction = await contract.createEWord(eword.engword, eword.plword) //
+           // const transaction = await contract.addEWord(eword.engword, eword.plword)
+         ////  const wordid = 0;
+           //////const wordid = data;
+           const wordid = 1;
+           // const transaction = await contract.getEngWord(wordid)
+           // const transaction = await contract.getEngWord(wordid)
+           // getEngWordEngExplainedAndPronounciation
+           // const transaction = await contract.getEngWordPlWord(wordid)
+          //  const transaction = await contract.getEngWordEngExplainedAndPronounciation(wordid)
+          
+          // const transaction = await contract.getAddedEngWordEngExplainedAndPronounciation(wordid);
+          const transaction = await contract.getListOfFiveWords(wordid);
+
+
+       
+           // console.log("transaction", transaction);
+           // console.log("transaction", transaction.data);
+          // setData(transaction)
+           // console.log("transaction", transaction);
+          
+          
+           ////// console.log("transaction_get_list_of_eng_words", transaction[0]); here
          
-          //    // return Math.floor(Math.random() * (max - min) + min);
-          //    const dataa =  Math.floor(Math.random() * (max - min) + min);
-          //    console.log("randommmmmm_int", dataa)
+           ////setEnglishWord(transaction[0]);
+           ////setEngWord("")
+         
+           // const engW = transaction[0];
+          
+           // sessionStorage.setItem('engw', transaction[0]);
+          
+            ///////////////// setEngW(transaction[0])
+           ////////////////// console.log("engWlskdjfl", engW);
 
-          //     localStorage.setItem("datacount", JSON.stringify(dataa))
-          //    // localStorage.setItem("datacount", data)
-          //    const dataaccountls = localStorage.getItem("datacount");
-          //    console.log("dataacountls", dataaccountls);
+          //  console.log("transaction_get_list_of_eng_words", transaction[1]);
+          console.log("transaction_get_list_of_eng_words", transaction);
+           ////setEnglishWordPronounciation(transaction[1]);
+           ////setEngWordPronounciation("")
 
-
-
-          //    ewordscount = dataa;
-          //    setEWordsCount(dataa)
-          //    console.log("ewordscount", ewordscount)
-             ///////////
-
-
-
-
-
-
-
-
-        // console.log('data: ', data[0][1]) - kind
+              setListOfEngWords([...listOfEngWords, transaction[1]]);
+            // setListOfEngWords([...listOfEngWords, transaction[0][0]]);
+            // setListOfEngWords([...listOfEngWords, transaction]);
+            //const transaction1 = transaction[1];
+           //setListOfEngWords(transaction[1]);
 
 
-        // console.log('data: ', data[0][1])
-        // console.log('data: ', data[0][2])
-        // console.log('data: ', data[1][1])
-        // console.log('data: ', data[1][2])
+
+          // setListOfEngWords([...listOfEngWords, transaction]);
+
+           ////console.log("transaction_get_added_eng_word", transaction[2]);
+           ////setEnglishWordExplained(transaction[2]);
+           ////setEngWordExplained("")
 
 
-        ///// console.log('data: ', data[0][0].engWord)
-        } catch (err) {
-          console.log('Error: ', err)
+           ////// setEngWExplained(transaction[1])
+
+
+           // sessionStorage.setItem('plw', transaction[1]);
+           // // const plW = transaction[1];
+           // setplW(transaction[1]);
+           // console.log("plW", plW);
+
+           // console.log("data", data);
+
+
+           ////console.log("transaction", transaction[2]);
+
+
+           return transaction;
+
+          //// fetchEWords();
+
+
+         //  fetchEngWord();
+       }
+
+
+
+     }
+
+
+
+
+
+    async function fetchEWords() {
+      if (typeof window.ethereum !== 'undefined') {
+          const provider = new ethers.providers.Web3Provider(window.ethereum)
+          // const contract = new ethers.Contract(ewordAddress, Eword.abi, provider)
+          // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, provider)
+          const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, provider)
+          try {
+          //   const data = await contract.greet()
+          // const data = await contract.fetchEWords() //
+          const data = await contract.getEWords()
+
+          
+
+          const data_count = data.length;
+
+            datacount = data_count;
+
+            // setData(data);
+            setData(data_count);
+
+           // setGreetingValue(data)
+
+               
+                
+               
+              // console.log('data[0]: ', data[0])
+              console.log('data[0]: ', data_count)
+              // setEWordsCount(data)
+              setEWordsCount(data_count)
+              console.log('ewordsCount: ', datacount)
+
+
+
+              const datta = datacount;
+              console.log("data_data", datacount)
+              getEWord(datacount);
+       
+             const min = Math.ceil(1);
+               // max = Math.floor(data.length);
+             const max = Math.floor(datta);
+           
+               // return Math.floor(Math.random() * (max - min) + min);
+               const dataa =  Math.floor(Math.random() * (max - min) + min);
+               console.log("randommmmmm_int", dataa)
+
+                localStorage.setItem("datacount", JSON.stringify(dataa))
+               // localStorage.setItem("datacount", data)
+               const dataaccountls = localStorage.getItem("datacount");
+               console.log("dataacountls", dataaccountls);
+
+
+
+               ewordscount = dataa;
+               setEWordsCount(dataa)
+               console.log("ewordscount", ewordscount)
+
+
+
+
+
+
+
+
+          // console.log('data: ', data[0][1]) - kind
+
+
+          // console.log('data: ', data[0][1])
+          // console.log('data: ', data[0][2])
+          // console.log('data: ', data[1][1])
+          // console.log('data: ', data[1][2])
+
+
+         console.log('data: ', data[0][0].engWord)
+          } catch (err) {
+            console.log('Error: ', err)
+          }
         }
-      }
+  }
+
+  function getRandomInt() {
+
+
+
+    // min = Math.ceil(min);
+    // max = Math.floor(max);
+
+   // const data = 10;
+   const data = datacount;
+   console.log("data_data", datacount)
+
+  const min = Math.ceil(1);
+    // max = Math.floor(data.length);
+  const max = Math.floor(data);
+
+    // return Math.floor(Math.random() * (max - min) + min);
+    const dataa =  Math.floor(Math.random() * (max - min) + min);
+    console.log("random_int", dataa)
+   // fetchEngWord(dataa);
+
+  }
+
+
+  const handleEngWord = async (e) => {
+
+    //  console.log(e.target.value);
+
+    setEngWToCheck(e.target.value);
+
+    // console.log(e.target.value);
+    // console.log(engWToCheck);
+
+      const plw = sessionStorage.getItem('plw')
+      console.log("s-plw", plw);
+
+    const engw =  sessionStorage.getItem('engw');
+     console.log("s-engw", engw);
+
+     const engwtocheck = engWToCheck;
+
+     
+  //    console.log(engwtocheck === engw);
+
+  // if (engWToCheck === engw) {
+  //   console.log("Ok");
+  //   getRandomInt();
+  // } else {
+  //   console.log("No");
+  // }
+
+  console.log(engwtocheck === engWExplained);
+
+  if (engWToCheck === engWExplained) {
+    console.log("Ok");
+
+    setEngWToCheck("")
+   //  getRandomInt();
+
+
+  //  const datta = datacount;
+  //  console.log("data_data", datacount)
+
+  // const min = Math.ceil(1);
+  //   // max = Math.floor(data.length);
+  // const max = Math.floor(datta);
+
+  //   // return Math.floor(Math.random() * (max - min) + min);
+  //   const dataa =  Math.floor(Math.random() * (max - min) + min);
+  //   console.log("randommmmmm_int", dataa)
+
+          const datacount = localStorage.getItem("datacount")
+        //  console.log("datacountttttt", datacount)
+        //  localStorage.clear()
+
+
+
+        //const datta = datacount;
+        console.log("data_data_handle_eword", datacount)
+        const datta = datacount;
+ 
+       const min = Math.ceil(1);
+         // max = Math.floor(data.length);
+       const max = Math.floor(datacount);
+     
+         // return Math.floor(Math.random() * (max - min) + min);
+         const dataa =  Math.floor(Math.random() * (max - min) + min);
+          console.log("randommmmmm_int_handle_eword", dataa)
+         //console.log("randommmmmm_int_handle_eword", datacount)
+
+        //   localStorage.setItem("datacount", JSON.stringify(dataa))
+        //  // localStorage.setItem("datacount", data)
+        //  const dataaccountls = localStorage.getItem("datacount");
+        //  console.log("dataacountls", dataaccountls);
+
+
+
+
+
+///
+       /////////////  getEWord(dataa);
+            ///////
+            
+            
+
+     // getEWord(datacount);
+
+
+   // fetchEWords()
+  } else {
+    console.log("No");
+  }
+
+
+
 }
-  
 
+const getEWord = async(data) => {
 
-async function requestAccount() {
-  // await window.ethereum.request({ method: "eth_requestAccounts" })
- const windw_eth =  await window.ethereum.request({ method: "eth_requestAccounts" })
- console.log("window_eth", windw_eth);
-}
-
- const getEWord = async(data) => {
-//  const getEWord = async() => {
-
-  ////const dataa = localStorage.getItem("dataa");
-  ////console.log("getEWord_dataa", dataa);
 
   /////////
   if (!typeof window.ethereum !== 'undefined') {
      await requestAccount()
      const provider = new ethers.providers.Web3Provider(window.ethereum)
      const signer = provider.getSigner()
-  
+     // const contract = new ethers.Contract(ewordAddress, Eword.abi, signer)
+     // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, signer)
      const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, signer)
 
+     // const transaction = await contract.createEWord(eword.engword, eword.plword, "lkajsdlfkjasd")
+     // const transaction = await contract.createEWord(eword.engword, eword.plword) //
+     // const transaction = await contract.addEWord(eword.engword, eword.plword)
+   ////  const wordid = 0;
      const wordid = data;
-
+     // const transaction = await contract.getEngWord(wordid)
+     // const transaction = await contract.getEngWord(wordid)
+     // getEngWordEngExplainedAndPronounciation
+     // const transaction = await contract.getEngWordPlWord(wordid)
      const transaction = await contract.getEngWordEngExplainedAndPronounciation(wordid)
  
-  
-    //  setEngword([...engword, transaction[0]]);
-    // setEngword(transaction[0]);
-    //  console.log("transaction", transaction[0]);
-    setEngword(transaction[0]);
+     // console.log("transaction", transaction);
+     // console.log("transaction", transaction.data);
+    // setData(transaction)
+     // console.log("transaction", transaction);
      console.log("transaction", transaction[0]);
-  
-     // setEngW(transaction[0])
-     // console.log("engW", engW);
+     // const engW = transaction[0];
+    
+     // sessionStorage.setItem('engw', transaction[0]);
+      setEngW(transaction[0])
+      console.log("engW", engW);
 
-     setCorrectEngword_explained([...correctEngword_explained, transaction[1]]);
      console.log("getEWordtransaction", transaction[1]);
 
-  
-     // setEngWExplained([...engWExplained, transaction[1]]);
+    //  setEngWExplained(transaction[1])
+    // setEngWExplained([...engWExplained, transaction[1]]);
+    setEngWExplained([...engWExplained, transaction[1]]);
 
 
-  
+     // sessionStorage.setItem('plw', transaction[1]);
+     // // const plW = transaction[1];
+     // setplW(transaction[1]);
+     // console.log("plW", plW);
+
+     // console.log("data", data);
+
 
      console.log("transaction", transaction[2]);
 
@@ -252,377 +473,122 @@ async function requestAccount() {
 }
 
 
+    /////////
+    const listofengw = listOfEngWords.map( listofengwords => {
+      <h1>{ listofengwords.engword_explained}</h1>
+    })
+    /////////
 
+    // const handleEWord = ({engword_explained}) => {
 
+    //     console.log("engword_explained", engword_explained);
+    // }
 
+    const handleEWord = (engword_explained) => {
 
-
-  async function fetchEWords() {
-    if (typeof window.ethereum !== 'undefined') {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        // const contract = new ethers.Contract(ewordAddress, Eword.abi, provider)
-        // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, provider)
-        const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, provider)
-        try {
-        //   const data = await contract.greet()
-        // const data = await contract.fetchEWords() //
-        const data = await contract.getEWords()
-
-        //setData(data);
-        // setData([...data, data])
-        
-        // setData(data)
-         setData1(data)
-        console.log(data);
-
-        console.log('datA01: ', data[0][1])
-        console.log('datA02: ', data[0][2])
-        console.log('datA03: ', data[0][3])
-        console.log('data11: ', data[1][1])
-        console.log('data12: ', data[1][2])
-        
-
-        const data_count = data.length;
-         
-
-           console.log("data_count", data_count);
-           const get_rand_word = getRandomInt(data_count);
-           console.log("get_rand_word", get_rand_word);
-
-
-           ////////////////////
-
-          //  const data_count = data.length;
-          //  localStorage.setItem("datacount", JSON.stringify(data_count))
-   
-          //  // getRandomInt(data_count);
-          //   const get_rand_word = getRandomInt(data_count);
-          //  // getRandomInt();
-          //      console.log("get_rand_word", get_rand_word);
-   
-          //      localStorage.setItem("getrandomword", JSON.stringify(get_rand_word))
-          //      console.log("getEWords1_get_rand_word", get_rand_word);
-          //         // localStorage.setItem("datacount", data)
-          //       ////  const getrandomword = localStorage.getItem("getrandomword");
-          //       ////  console.log("getrandomword", getrandomword);
-          //          getEWord(get_rand_word);
-
-
-
-           ///////////////////
-
-
-
-
-
-
-
-
-         ///// datacount = data_count;
-
-          // setData(data);
-         ///// setData(data_count);
-
-         // setGreetingValue(data)
-
-             
-              
-             
-            // console.log('data[0]: ', data[0])
-           /////  console.log('data[0]: ', data_count)
-            // setEWordsCount(data)
-           ///// setEWordsCount(data_count)
-           ///// console.log('ewordsCount: ', datacount)
-
-
-
-           ////////////
-          //   const datta = datacount;
-          //   console.log("data_data", datacount)
-          //   getEWord(datacount);
-     
-          //  const min = Math.ceil(1);
-          //    // max = Math.floor(data.length);
-          //  const max = Math.floor(datta);
-         
-          //    // return Math.floor(Math.random() * (max - min) + min);
-          //    const dataa =  Math.floor(Math.random() * (max - min) + min);
-          //    console.log("randommmmmm_int", dataa)
-
-          //     localStorage.setItem("datacount", JSON.stringify(dataa))
-          //    // localStorage.setItem("datacount", data)
-          //    const dataaccountls = localStorage.getItem("datacount");
-          //    console.log("dataacountls", dataaccountls);
-
-
-
-          //    ewordscount = dataa;
-          //    setEWordsCount(dataa)
-          //    console.log("ewordscount", ewordscount)
-             ///////////
-
-
-
-
-
-
-
-
-        // console.log('data: ', data[0][1]) - kind
-
-
-        // console.log('data: ', data[0][1])
-        // console.log('data: ', data[0][2])
-        // console.log('data: ', data[1][1])
-        // console.log('data: ', data[1][2])
-
-
-        ///// console.log('data: ', data[0][0].engWord)
-        } catch (err) {
-          console.log('Error: ', err)
-        }
-      }
-}
-
- const getRandomInt = ( random_digit) => {
- // const getRandomInt = () => {
- // let random_digit = 1;
-  // const datacount = localStorage.getItem("datacount");
-  //   console.log("random_digit", random_digit);
-  //   console.log("random_digit_datacount", datacount);
-
-   // random_digit = datacount;
-
-    // const min = Math.ceil(1);
-    const min = Math.ceil(0);
-    // max = Math.floor(data.length);
-  const max = Math.floor(random_digit);
-
-    // return Math.floor(Math.random() * (max - min) + min);
-    const dataa =  Math.floor(Math.random() * (max - min) + min);
-    console.log("randommmmmm_int", dataa)
-   //// localStorage.setItem("dataa", JSON.stringify(dataa))
-   ////  const get_rand_word = localStorage.getItem("dataa");
-   //// console.log("get_rand_word", get_rand_word);
-
-    
-    return dataa;
-   // return random_digit;
-
-}
-
-
-
-
-  const handleSearch = (e) => {
-
-    setQuery(e.target.value)
-    setWordId(0);
-    console.log("query", query);
-
+      console.log("engword_explained", engword_explained);
   }
 
-  const handleEngWord = (engword_explained) => {
-    let getrandomword = localStorage.getItem("getrandomword");
-        console.log("handleEngWord_engword_explained", engword_explained[3]);
-        let engwordexplained = engword_explained[3];
-        console.log("engwordexplained", engwordexplained);
-       
-        // setCorrectEngword_explained([...correctEngword_explained,engword_explained[0]]);
-        // setCorrectEngword_explained([...correctEngword_explained,engword_explained[getrandomword][3]]);
-        // setCorrectEngword_explained([...correctEngword_explained,engword_explained[3]]);
-         console.log(engword_explained[3]===engwordexplained);
-        // setCorrectEngword_explained([...correctEngword_explained,engword_explained[3]]);
-        setCorrectEngword_explained([...correctEngword_explained,engwordexplained]);
-        //setCorrectEngword_explained(engword_explained[3]);
 
-        // console.log("data1----", data1[3][3]);
-        console.log("data1----", data1[getrandomword][3]);
-
-        //setCorrectEngword_explained(engword_explained[0]);
-        // console.log("handleEngWord_correctEngword_explaned", correctEngword_explained[0]);
-       // console.log("handleEngWord_correctEngword_explaned", engword_explained[getrandomword][3]);
-    // let getrandomword = localStorage.getItem("getrandomword");
-   // console.log("handleEngWord_getrandomword", getrandomword);
-     //  console.log("correctEngword_explained", correctEngword_explained[0]);////////
-  
-
-    // if ( engword_explained === correctEngword_explained[0]) {
-    //    console.log("OK")
-    //    fetchEWords1();
-    // } else {
-    //   console.log("NO");
-    // }
-
-    // try engword_explained[3] == correctEngword_explained
-
-  //   if ( engword_explained[3] == correctEngword_explained[0]) {
-  //     console.log("OK")
-  //     fetchEWords1();
-  //  } else {
-  //    console.log("NO");
-  //  }
-  // engword_explained[3]
-
-//   if ( engword_explained[3] == correctEngword_explained) {
-//     console.log("OK")
-//     fetchEWords1();
-//  } else {
-//    console.log("NO");
-//  }
-//data1[getrandomword][3]
-// if ( engword_explained[3] === engwordexplained) {
-//   console.log("OK")
-//   fetchEWords1();
-// } else {
-//  console.log("NO");
-// }
-
-if ( engword_explained[3] === data1[getrandomword][3]) {
-  console.log("OK")
-  fetchEWords1();
-} else {
- console.log("NO");
-}
-
-
-
-
-
-   // console.log(engword_explained === correctEngword_explained);
-    // const correctEngword_explained = correctEngword_explained[0];
-  ///////  console.log("engword_explained",engword_explained);
-    // const engword = engword_explained[getrandomword][3];
-  
-  
-    // setCorrectEngword_explained(data1[getrandomword][getrandomword])
-    // console.log("correct", correctEngword_explained);
-    // console.log(data1[getrandomword][getrandomword]);
-  
-  
-  
-  
-    // const engwordd = engword[getrandomword][3];
-    // console.log("handleEngWord_engword", engwordd);
-    // console.log("engword", engwordd);
-
-    // console.log("correct", correctEngword_explained[0].engword_explained);
-    // const correct = correctEngword_explained[0].engword_explained;
-    // console.log("correct", correctEngword_explained[0]);
-    // const correct = correctEngword_explained[0];
-   
-   ////// console.log("correct", correctEngword_explained);
-    ////////////// const correct = correctEngword_explained;
-   // const correct = data1[getrandomword][getrandomword];
-
-
-
-
-   // const engwordexplained = engword_explained;
-    
-    //  console.log(engword === correct);
-   // console.log(engword.localeCompare(correct));
-        
-   /////////////
-  //  const engword = ""
-  //        const correct = ""
-
-  //     if ( engword == correct) {
-  //       console.log("OK")
-  //       fetchEWords1();
-
-
-
-  //       // setEngword("");
-        
-  //       // setData1([...data1, ""]);
-  //       // setCorrectEngword_explained([...setCorrectEngword_explained, ""]);
-        
-  //     } else {
-  //       console.log("NO");
-  //     }
-///////////////
-
-
-    // if (correctEngword_explained[0] === engword_explained) {
-    //   console.log("OK")
-    // } else {
-    //   console.log("No");
-    // }
-   
-    // if (correctEngword_explained === engword_explained) {
-    //   console.log(correctEngword_explained===engword_explained);
-    // } else {
-    //   console.log(correctEngword_explained===engword_explained);
-    // }
-
-  }
 
   return (
+    <div className='learn'>
+
+      
+
+    <html>
+    </html>
+
+    {/* <Timeline
+    dataSource={{
+      sourceType: 'profile',
+      screenName: '4passionDev'
+    }}
+    options={{
+      height: '400'
+    }}
+    
+    /> */}
 
 
-   <div>
-    <strong>{engword}</strong>
+
+        <h1>Learn</h1>
+
+        <div className='engwtocheck'>
+
+      <div>
+        {/* { listofengw} */}
+
+        {
+          merged_arrays.map( (items) => (
+            <button >{items.engword_explained}</button>
+
+          ))
+        }
 
 
-    {/* {
-      data1.map( (item) => (
-        <h4>{item.engword_explained}</h4>
-      ) )
-    } */}
 
+        {
+          listOfEngWords.map( (listofengwords) => ( 
+            // <h7>{listofengwords.engword_explained}</h7>
+            // <p>{listofengwords.engword_explained}</p>
+            // <button>{listofengwords.engword_explained}</button>
+            <button onClick={(e)=> handleEWord(listofengwords.engword_explained)}>{listofengwords.engword_explained}</button>
+          ))
+        }
+
+      {
+
+listOfEngWords.map(
+  listofengwords => {
+    <h1>{listofengwords.engword_explained}</h1>
+  }
+)
+                }
+      </div>
+
+
+      
+
+            <form >
+                {plW}
+                {engW}
+                { sessionStorage.getItem('plw') }
+
+                 {/* <input onChange = { (e) => setEngWord(e.target.value)} id="engword" value = {engWord} placeholder='engword' type="text"/>
+                <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='plword' type="text" /> */}
+
+                {/* <input onChange = { (e) => setEngWToCheck(e.target.value)} id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' type="text"/> */}
+                <input onChange = { handleEngWord } id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' style={{ width: "500px", textAlign: "center"}}type="text"/>
+
+
+
+                {/* <button>Submit</button> */}
+
+                {plW}
+
+
+
+                {engWExplained}
+
+               
+
+                
+
+            </form>
+</div>
+
+        
+      
+    </div>
 
     
-    {/* { //////ok
-      data.map( (item) => (
-        <h4>{item.engword_explained}</h4>
-      ) )
-    }
-
-    {
-      data1.map( (item) => (
-        <h4>{item.engword_explained}</h4>
-      ))
-
-    } ////// */}
-    
-    {
-      data1.map( (item) => (
-        // <h4>{item.engword_explained}</h4>
-        // <p onClick={()=> handleEngWord(item.engword_explained)}>{item.engword_explained}</p>
-        <p onClick={()=> handleEngWord(item)}>{item.engword_explained}</p>
-
-      ))
-
-    } 
-
-
-
-    {/* {
-      mixed_arrays.map( (item) => (
-        <h4>{item.engword_explained}</h4>
-      ))
-    } */}
-
-
-   {/* {
-      mixed_arrays.map( (item) => (
-        // <h4>{item.engword_explained}</h4>
-        <button onClick={()=> handleEngWord(item.engword_explained)}>{item.engword_explained}</button>
-      ))
-    } */}
-   </div>
-
-   
-
-
-
-
-
-    // <>
-    // <input type="text" onChange={handleSearch}></input>
-    // </>
   )
+  // listOfEngWords.map(
+  //   listofengwords => {
+  //     <h1>{listofengwords.engword_explained}</h1>
+  //   }
+  // )
 }
 
 export default Learn

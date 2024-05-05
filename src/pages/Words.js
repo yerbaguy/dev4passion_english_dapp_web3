@@ -30,14 +30,6 @@ function Words() {
   }]);
 
   const mixed_arrays = data1.concat(engword);
-  // mixed_arrays.sort();
-  // mixed_arrays.reverse();
-  const [correctEngword_explained, setCorrectEngword_explained] = useState([
-    {
-      id: 1,
-      engword_explained: "kind"
-    }
-  ]);
 
   // useEffect(()=>{
 
@@ -47,10 +39,8 @@ function Words() {
   useEffect(()=>{
 
    // getEngWords();
-   fetchEWords();
-   // fetchEWords1();
-  //  mixed_arrays.sort();
-  //  mixed_arrays.reverse();
+   //fetchEWords();
+   fetchEWords1();
   },[])
 
 
@@ -68,7 +58,7 @@ function Words() {
 
         //setData(data);
         setData1([...data, data])
-        console.log("data",data);
+        console.log(data);
         
 
         const data_count = data.length;
@@ -153,21 +143,10 @@ function Words() {
         // const data = await contract.fetchEWords() //
         const data = await contract.getEWords()
 
-       // setData(data);
-       // setData([...data, data])
-        console.log("data0",data[0]);
-        console.log("data01",data[0][1]);
-        console.log("data02",data[0][2]);
-        console.log("data03",data[0][3]);
-        console.log("data11",data[1][1]);
-        console.log("data12",data[1][2]);
-        console.log("data13",data[1][3]);
-
-        //the 1 word_description is for instance data[0][3], sor the 1th word is data[1][3],
-        //so probably we can access the possible element of the array using the current
-        //random taken digit of the word 
-
-
+        //setData(data);
+        setData([...data, data])
+        console.log(data);
+        
 
         const data_count = data.length;
 
@@ -251,43 +230,14 @@ function Words() {
   }
 
   const handleEngWord = (engword_explained) => {
-   // const correctEngword_explained = correctEngword_explained[0];
     console.log(engword_explained);
-    const engword = engword_explained;
-    console.log("engword", engword);
-    console.log("correct", correctEngword_explained[0].engword_explained);
-    const correct = correctEngword_explained[0].engword_explained;
-   // const engwordexplained = engword_explained;
-    
-    //  console.log(engword === correct);
-   // console.log(engword.localeCompare(correct));
-
-      if ( engword == correct) {
-        console.log("OK")
-      } else {
-        console.log("NO");
-      }
-
-    // if (correctEngword_explained[0] === engword_explained) {
-    //   console.log("OK")
-    // } else {
-    //   console.log("No");
-    // }
-   
-    // if (correctEngword_explained === engword_explained) {
-    //   console.log(correctEngword_explained===engword_explained);
-    // } else {
-    //   console.log(correctEngword_explained===engword_explained);
-    // }
-
   }
 
   return (
 
 
    <div>
-    
-    {/* { //////ok
+    {
       data.map( (item) => (
         <h4>{item.engword_explained}</h4>
       ) )
@@ -298,10 +248,7 @@ function Words() {
         <h4>{item.engword_explained}</h4>
       ))
 
-    } ////// */}
-    
-
-
+    }
 
     {/* {
       mixed_arrays.map( (item) => (
@@ -309,15 +256,8 @@ function Words() {
       ))
     } */}
 
-   {/* {
-      mixed_arrays.map( (item) => (
-        // <h4>{item.engword_explained}</h4>
-        <button onClick={()=> handleEngWord(item.engword_explained)}>{item.engword_explained}</button>
-      ))
-    } */}
-
    {
-      data1.map( (item) => (
+      mixed_arrays.map( (item) => (
         // <h4>{item.engword_explained}</h4>
         <button onClick={()=> handleEngWord(item.engword_explained)}>{item.engword_explained}</button>
       ))
