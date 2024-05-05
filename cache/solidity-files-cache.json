@@ -1,9 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp_web3/contracts/EWordEngContract.sol": {
-      "lastModificationDate": 1676274302262,
-      "contentHash": "8502522ae86afc9bdbbeb67f44038549",
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp_web3_bkp_21_04_2023/contracts/EWordEngContract.sol": {
+      "lastModificationDate": 1685933577414,
+      "contentHash": "c63189d3436c635f7af766f4f3dd9c9f",
       "sourceName": "contracts/EWordEngContract.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -36,8 +36,8 @@
         "EWordEngContract"
       ]
     },
-    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp_web3/contracts/Lock.sol": {
-      "lastModificationDate": 1676158329660,
+    "/Users/bartosz/Documents/react-dapps/dev4passion_english_dapp_web3_bkp_21_04_2023/contracts/Lock.sol": {
+      "lastModificationDate": 1685933577414,
       "contentHash": "ae66265769cc28ebdaa34881df95bc5e",
       "sourceName": "contracts/Lock.sol",
       "solcConfig": {

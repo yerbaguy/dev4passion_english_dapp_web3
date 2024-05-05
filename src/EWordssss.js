@@ -51,7 +51,10 @@ import { Container, Form } from 'semantic-ui-react'
 // const ewordAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3" ////
 ///////const ewordAddress = "0x047F65031c8aBf370FDBfEf667B0b1fd702F09Ef"
 //const ewordAddress = "0x58Fc0f0421203218EA9Cb55C743Dd2A82f6218C5"
-const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+
+// const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const ewordEngContract = "0x9EBD79915dA3aCa29139e61Fa46d5fE604576729"
+
 
 
 function EWordssss() {
@@ -673,7 +676,7 @@ function EWordssss() {
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='engword_explained' type="text" />
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='engword_pronouciation' type="text" /> */}
 
-                <input onChange = { (e) => setEngWord(e.target.value)} id="engword" value = {engWord} placeholder='engword' type="text"/>
+                <input onChange = { (e) => setEngWord(e.target.value)} id="engword" value = {engWord} placeholder='engword'  type="text"/>
                 <input onChange = { (e) => setEngWordExplained(e.target.value)} id="engword_explaned" value = {engWordExplained} placeholder='engword_explained' type="text" />
                 <input onChange = { (e) => setEngWordPronounciation(e.target.value)} id="engword_pronounciation" value = {engWordPronounciation} placeholder='engword_pronouciation' type="text" />
 
@@ -713,6 +716,9 @@ function EWordssss() {
 
 
 
+<div className='engwtocheck'>
+      lkajsdlkfajsssssss
+
             <form >
                 {plW}
                 { sessionStorage.getItem('plw') }
@@ -721,7 +727,7 @@ function EWordssss() {
                 <input onChange = { (e) => setPlWord(e.target.value)} id="plword" value = {plWord} placeholder='plword' type="text" /> */}
 
                 {/* <input onChange = { (e) => setEngWToCheck(e.target.value)} id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' type="text"/> */}
-                <input onChange = { handleEngWord } id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' type="text"/>
+                <input onChange = { handleEngWord } id="engWToCheck" value = {engWToCheck} placeholder='engWToCheck' style={{ width: "500px"}}type="text"/>
 
 
 
@@ -732,7 +738,7 @@ function EWordssss() {
 
 
             </form>
-
+</div>
 
  
         </dev>
