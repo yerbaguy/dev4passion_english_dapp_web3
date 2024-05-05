@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract EWordEngContract is ERC20{
+contract EWordEngContractt is ERC20{
 
     event AddWord(address recipient, uint wordId);
 
@@ -54,7 +54,15 @@ contract EWordEngContract is ERC20{
 
     constructor() ERC20("","") {
 
-       
+        ////////
+        // EWord[] storage _ewords = ewords;
+        // EWord memory eword = EWord(1, "kind", "kand","generous, helpful, and thinking about other people's feelings");
+        // EWord memory eword1 = EWord(2, "hardly", "hd.li/","only just; almost not");
+        // _ewords.push(eword);
+        // _ewords.push(eword1);
+        ///////
+
+
 
         // EWordWronglyExplained[][7] storage _ewords_wrongly_explained = ewords_wrongly_explained;
         // EWordWronglyExplained memory eword_wrong = EWordWronglyExplained(0, "less than anything or anyone else; the smallest amount or number","special, or this and not any other");
