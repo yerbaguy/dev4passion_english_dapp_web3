@@ -121,8 +121,7 @@ function AddWords() {
             console.log("transaction", transaction.data);
 
              fetchEWords();
-             getAddedEngWord(1);
-             getListOfEngWords(1);
+             getAddedEngWord();
             // fetchEngWord();
         }
         // ///////////
@@ -145,7 +144,6 @@ function AddWords() {
               console.log("fetchewords_data_count", fetchewords_data_count);
 
               getAddedEngWord(fetchewords_data_count);
-              getListOfEngWords(2);
   
                 datacount = data_count;
   
@@ -273,92 +271,6 @@ function AddWords() {
 
 
            console.log("transaction", transaction[2]);
-
-
-           return transaction;
-
-          //// fetchEWords();
-
-
-         //  fetchEngWord();
-       }
-
-
-
-     }
-
-
-
-     async function getListOfEngWords(fetchewords_data_count) {
-      //  const getAddedEngWord = async() => {
-
-          console.log("getAddedEngWord", fetchewords_data_count);
-
-        /////////
-        if (!typeof window.ethereum !== 'undefined') {
-           await requestAccount()
-           const provider = new ethers.providers.Web3Provider(window.ethereum)
-           const signer = provider.getSigner()
-           // const contract = new ethers.Contract(ewordAddress, Eword.abi, signer)
-           // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, signer)
-           const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, signer)
-
-           // const transaction = await contract.createEWord(eword.engword, eword.plword, "lkajsdlfkjasd")
-           // const transaction = await contract.createEWord(eword.engword, eword.plword) //
-           // const transaction = await contract.addEWord(eword.engword, eword.plword)
-         ////  const wordid = 0;
-           //////const wordid = data;
-           const wordid = 1;
-           // const transaction = await contract.getEngWord(wordid)
-           // const transaction = await contract.getEngWord(wordid)
-           // getEngWordEngExplainedAndPronounciation
-           // const transaction = await contract.getEngWordPlWord(wordid)
-          //  const transaction = await contract.getEngWordEngExplainedAndPronounciation(wordid)
-          
-          // const transaction = await contract.getAddedEngWordEngExplainedAndPronounciation(wordid);
-          const transaction = await contract.getListOfFiveWords(wordid);
-
-
-       
-           // console.log("transaction", transaction);
-           // console.log("transaction", transaction.data);
-          // setData(transaction)
-           // console.log("transaction", transaction);
-          
-          
-           ////// console.log("transaction_get_list_of_eng_words", transaction[0]); here
-         
-           ////setEnglishWord(transaction[0]);
-           ////setEngWord("")
-         
-           // const engW = transaction[0];
-          
-           // sessionStorage.setItem('engw', transaction[0]);
-          
-            ///////////////// setEngW(transaction[0])
-           ////////////////// console.log("engWlskdjfl", engW);
-
-           console.log("transaction_get_list_of_eng_words", transaction[1]);
-           ////setEnglishWordPronounciation(transaction[1]);
-           ////setEngWordPronounciation("")
-
-           ////console.log("transaction_get_added_eng_word", transaction[2]);
-           ////setEnglishWordExplained(transaction[2]);
-           ////setEngWordExplained("")
-
-
-           ////// setEngWExplained(transaction[1])
-
-
-           // sessionStorage.setItem('plw', transaction[1]);
-           // // const plW = transaction[1];
-           // setplW(transaction[1]);
-           // console.log("plW", plW);
-
-           // console.log("data", data);
-
-
-           ////console.log("transaction", transaction[2]);
 
 
            return transaction;

@@ -12,7 +12,7 @@ import { Timeline } from 'react-twitter-widgets'
 
 // const ewordEngContract = "0x9EBD79915dA3aCa29139e61Fa46d5fE604576729"
 // const ewordEngContract = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9"
-const ewordEngContract = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+const ewordEngContract = "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707"
 
 
 function Learn() {
@@ -27,10 +27,7 @@ function Learn() {
 
   // const [engW, setEngW] = useState([])
   const [engW, setEngW] = useState('')
-  
-  // const [engWExplained, setEngWExplained] = useState('')
-  const [engWExplained, setEngWExplained] = useState([])
-  
+  const [engWExplained, setEngWExplained] = useState('')
   const [plW, setplW] = useState([])
 
    
@@ -43,37 +40,6 @@ function Learn() {
 
   const [ewordsCount, setEWordsCount] = useState(0)
 
-  // const [listOfEngWords, setListOfEngWords] = useState([
-  //   {
-  //     id: 1,
-  //     engword_explained: 'kind'
-  //   },
-
-  //   {
-  //     id: 2,
-  //     engword_explained: 'hardly'
-  //   },
-
-  //   {
-  //     id: 3,
-  //     engword_explained: 'least'
-  //   },
-
-  //   {
-  //     id: 4,
-  //     engword_explained: 'particular'
-  //   },
-
-
-  // ]);
-
-    const [listOfEngWords, setListOfEngWords] = useState([]);
-  // const [listOfEngWords, setListOfEngWords] = useState('');
-  //const [listOfEngWords, setListOfEngWords] = useState();
-
-  // const merged_arrays = listOfEngWords.concat(engWExplained);
-  const merged_arrays = [...engWExplained, ...listOfEngWords];
-
   let ewordscount
   let datacount = 1
 
@@ -84,8 +50,7 @@ function Learn() {
 
      // loadEWord();
 
-      fetchEWords();
-     getListOfEngWords(1);
+     fetchEWords();
 
     getRandomInt();
 
@@ -109,108 +74,6 @@ function Learn() {
      const windw_eth =  await window.ethereum.request({ method: "eth_requestAccounts" })
      console.log("window_eth", windw_eth);
     }
-
-
-
-
-
-    async function getListOfEngWords(fetchewords_data_count) {
-      //  const getAddedEngWord = async() => {
-
-          console.log("getAddedEngWord", fetchewords_data_count);
-
-        /////////
-        if (!typeof window.ethereum !== 'undefined') {
-           await requestAccount()
-           const provider = new ethers.providers.Web3Provider(window.ethereum)
-           const signer = provider.getSigner()
-           // const contract = new ethers.Contract(ewordAddress, Eword.abi, signer)
-           // const contract = new ethers.Contract(ewordAddress, EWordContract.abi, signer)
-           const contract = new ethers.Contract(ewordEngContract, EWordEngContract.abi, signer)
-
-           // const transaction = await contract.createEWord(eword.engword, eword.plword, "lkajsdlfkjasd")
-           // const transaction = await contract.createEWord(eword.engword, eword.plword) //
-           // const transaction = await contract.addEWord(eword.engword, eword.plword)
-         ////  const wordid = 0;
-           //////const wordid = data;
-           const wordid = 1;
-           // const transaction = await contract.getEngWord(wordid)
-           // const transaction = await contract.getEngWord(wordid)
-           // getEngWordEngExplainedAndPronounciation
-           // const transaction = await contract.getEngWordPlWord(wordid)
-          //  const transaction = await contract.getEngWordEngExplainedAndPronounciation(wordid)
-          
-          // const transaction = await contract.getAddedEngWordEngExplainedAndPronounciation(wordid);
-          const transaction = await contract.getListOfFiveWords(wordid);
-
-
-       
-           // console.log("transaction", transaction);
-           // console.log("transaction", transaction.data);
-          // setData(transaction)
-           // console.log("transaction", transaction);
-          
-          
-           ////// console.log("transaction_get_list_of_eng_words", transaction[0]); here
-         
-           ////setEnglishWord(transaction[0]);
-           ////setEngWord("")
-         
-           // const engW = transaction[0];
-          
-           // sessionStorage.setItem('engw', transaction[0]);
-          
-            ///////////////// setEngW(transaction[0])
-           ////////////////// console.log("engWlskdjfl", engW);
-
-          //  console.log("transaction_get_list_of_eng_words", transaction[1]);
-          console.log("transaction_get_list_of_eng_words", transaction);
-           ////setEnglishWordPronounciation(transaction[1]);
-           ////setEngWordPronounciation("")
-
-              setListOfEngWords([...listOfEngWords, transaction[1]]);
-            // setListOfEngWords([...listOfEngWords, transaction[0][0]]);
-            // setListOfEngWords([...listOfEngWords, transaction]);
-            //const transaction1 = transaction[1];
-           //setListOfEngWords(transaction[1]);
-
-
-
-          // setListOfEngWords([...listOfEngWords, transaction]);
-
-           ////console.log("transaction_get_added_eng_word", transaction[2]);
-           ////setEnglishWordExplained(transaction[2]);
-           ////setEngWordExplained("")
-
-
-           ////// setEngWExplained(transaction[1])
-
-
-           // sessionStorage.setItem('plw', transaction[1]);
-           // // const plW = transaction[1];
-           // setplW(transaction[1]);
-           // console.log("plW", plW);
-
-           // console.log("data", data);
-
-
-           ////console.log("transaction", transaction[2]);
-
-
-           return transaction;
-
-          //// fetchEWords();
-
-
-         //  fetchEngWord();
-       }
-
-
-
-     }
-
-
-
 
 
     async function fetchEWords() {
@@ -248,7 +111,6 @@ function Learn() {
 
               const datta = datacount;
               console.log("data_data", datacount)
-              getEWord(datacount);
        
              const min = Math.ceil(1);
                // max = Math.floor(data.length);
@@ -442,11 +304,9 @@ const getEWord = async(data) => {
       setEngW(transaction[0])
       console.log("engW", engW);
 
-     console.log("getEWordtransaction", transaction[1]);
+     console.log("transaction", transaction[1]);
 
-    //  setEngWExplained(transaction[1])
-    // setEngWExplained([...engWExplained, transaction[1]]);
-    setEngWExplained([...engWExplained, transaction[1]]);
+     setEngWExplained(transaction[1])
 
 
      // sessionStorage.setItem('plw', transaction[1]);
@@ -473,33 +333,15 @@ const getEWord = async(data) => {
 }
 
 
-    /////////
-    const listofengw = listOfEngWords.map( listofengwords => {
-      <h1>{ listofengwords.engword_explained}</h1>
-    })
-    /////////
-
-    // const handleEWord = ({engword_explained}) => {
-
-    //     console.log("engword_explained", engword_explained);
-    // }
-
-    const handleEWord = (engword_explained) => {
-
-      console.log("engword_explained", engword_explained);
-  }
-
 
 
   return (
     <div className='learn'>
 
-      
-
     <html>
     </html>
 
-    {/* <Timeline
+    <Timeline
     dataSource={{
       sourceType: 'profile',
       screenName: '4passionDev'
@@ -508,47 +350,14 @@ const getEWord = async(data) => {
       height: '400'
     }}
     
-    /> */}
+    />
 
 
 
         <h1>Learn</h1>
 
         <div className='engwtocheck'>
-
-      <div>
-        {/* { listofengw} */}
-
-        {
-          merged_arrays.map( (items) => (
-            <button >{items.engword_explained}</button>
-
-          ))
-        }
-
-
-
-        {
-          listOfEngWords.map( (listofengwords) => ( 
-            // <h7>{listofengwords.engword_explained}</h7>
-            // <p>{listofengwords.engword_explained}</p>
-            // <button>{listofengwords.engword_explained}</button>
-            <button onClick={(e)=> handleEWord(listofengwords.engword_explained)}>{listofengwords.engword_explained}</button>
-          ))
-        }
-
-      {
-
-listOfEngWords.map(
-  listofengwords => {
-    <h1>{listofengwords.engword_explained}</h1>
-  }
-)
-                }
-      </div>
-
-
-      
+      lkajsdlkfajsssssss
 
             <form >
                 {plW}
@@ -566,29 +375,16 @@ listOfEngWords.map(
                 {/* <button>Submit</button> */}
 
                 {plW}
-
-
-
                 {engWExplained}
 
-               
 
-                
 
             </form>
 </div>
 
-        
       
     </div>
-
-    
   )
-  // listOfEngWords.map(
-  //   listofengwords => {
-  //     <h1>{listofengwords.engword_explained}</h1>
-  //   }
-  // )
 }
 
 export default Learn
